@@ -1,0 +1,10 @@
+
+import math
+
+MAX_VALUEEE = 387.6
+MSE = 40.73
+PSNR = 10*math.log10(MAX_VALUEEE*MAX_VALUEEE/MSE)
+print(PSNR)
+
+MSE = MAX_VALUEEE*MAX_VALUEEE / (10 **(PSNR/10))
+print(MSE)
