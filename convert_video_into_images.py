@@ -30,9 +30,15 @@ def video_to_pic(video_path, save_path, frame_rate):
 
 if __name__ == '__main__':
     # 视频文件和图片保存地址
-    SAMPLE_VIDEO = 'E:/DroneDatasets/DroneVideos/DJI_0838.MP4'
-    SAVE_PATH = 'E:/DroneDatasets/DroneVideos/DJI_0838/'
+    #SAMPLE_VIDEO = 'E:/DroneDatasets/DroneVideos/DJI_0838.MP4'
+    #SAVE_PATH = 'E:/DroneDatasets/DroneVideos/DJI_0838/'
 
+    #SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014.MP4'
+    #SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014/'
+    #SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0023.MP4'
+    #SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0023/'
+    SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/DroneVideos/DJI_0833.MP4'
+    SAVE_PATH = 'E:/Datasets/DroneDatasets/DroneVideos/DJI_0833/'    
     if not os.path.exists(SAVE_PATH):
         os.makedirs(SAVE_PATH)
 

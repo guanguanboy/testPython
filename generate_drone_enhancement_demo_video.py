@@ -9,6 +9,8 @@ import cv2
 #filename = 'a0093'
 #filename = 'c462875'
 #filename = 'a3074'
+#filename = 'DJI_0014'
+#enhanced_filename = 'DJI_0014_result_Zero_DCE++'
 filename = 'DJI_0023'
 enhanced_filename = 'DJI_0023_result_Zero_DCE++'
 low_light_imgs_path = os.path.join('E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/', filename)
@@ -31,15 +33,16 @@ list_len = len(image_files)
 
 
 # 设置目标宽度和高度为1080P
-resized_width, resized_height = 1920, 1080
-
+#resized_width, resized_height = 1920, 1080
+resized_width, resized_height = 640, 480
 # 计算调整大小后的宽度和高度
 target_width = resized_width*2
 resized_height = resized_height
 
-videoWriter = cv2.VideoWriter('videos/'+ filename + '_Zero_DCE_enhanced_fps60.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 60, (target_width,resized_height))
+videoWriter = cv2.VideoWriter('videos/'+ filename + '_Zero_DCE_enhanced_fps60_480P_part3.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 60, (target_width,resized_height))
 
-for  i in range(list_len):
+#for  i in range(list_len):
+for  i in range(2000, 5000):    
     low_img  = cv2.imread(os.path.join(low_light_imgs_path, image_files[i])) 
     enh_img  = cv2.imread(os.path.join(enhanced_imgs_path, image_files[i])) 
     print(image_files[i])
