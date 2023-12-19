@@ -8,9 +8,9 @@ import numpy as np
 #video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')
 #video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
 
-video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')
-video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
-video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')
+video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_resized_fps30.mp4')
+video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_DCE++_enhanced_fps30.mp4')
+video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_SCI_enhanced_fps30.mp4')
 video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
 # 创建黑色背景图像
 background_color = (0, 0, 0)  # 黑色背景
