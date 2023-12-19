@@ -4,7 +4,7 @@ import numpy as np
 
 # 加载视频
 video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_detected.mp4')
-video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced_detected.mp4')
+video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced_detected_yolox.mp4')
 
 # 创建黑色背景图像
 background_color = (0, 0, 0)  # 黑色背景
@@ -17,7 +17,7 @@ font_size = 40
 font = ImageFont.truetype('arial.ttf', font_size)
 
 # 创建视频写入对象
-output_filename = './videos/DJI_0286_detection_demo.mp4'
+output_filename = './videos/DJI_0286_detection_yolox_demo.mp4'
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 output_video = cv2.VideoWriter(output_filename, fourcc, 30.0, (background_width, background_height))
 
@@ -51,8 +51,10 @@ while True:
 
     # 在黑色背景上添加视频名称标记
     draw = ImageDraw.Draw(background_image)
-    video1_name = 'Low-light'
-    video2_name = 'Enhanced'
+    #video1_name = 'Low-light'
+    #video2_name = 'Enhanced'
+    video1_name = 'Low-light Dectection Results'
+    video2_name = 'Enhanced Dectection Results'
     #draw.text((10, 10), video1_name, font=font, fill=(255, 255, 255))
     #draw.text((background_width // 2 + 10, 10), video2_name, font=font, fill=(255, 255, 255))
     # 计算视频名称起始位置

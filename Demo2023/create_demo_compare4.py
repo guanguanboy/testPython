@@ -3,6 +3,11 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 
 # 加载视频
+#video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')
+#video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
+#video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')
+#video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
+
 video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')
 video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
 video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')

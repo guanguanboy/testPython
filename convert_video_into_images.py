@@ -23,7 +23,8 @@ def video_to_pic(video_path, save_path, frame_rate):
         # 每隔固定帧保存一张图片
         if i % frame_rate == 0:
             j = j + 1
-            save_image(frame, save_path, j)
+            resized_frame = cv2.resize(frame, (1024, 768))
+            save_image(resized_frame, save_path, j)
             print('图片保存地址：', save_path + str(j) + '.jpg')
         success, frame = videoCapture.read()
 
@@ -33,12 +34,12 @@ if __name__ == '__main__':
     #SAMPLE_VIDEO = 'E:/DroneDatasets/DroneVideos/DJI_0838.MP4'
     #SAVE_PATH = 'E:/DroneDatasets/DroneVideos/DJI_0838/'
 
-    #SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014.MP4'
-    #SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014/'
+    SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014.MP4'
+    SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014_resized/'
     #SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0023.MP4'
     #SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0023/'
-    SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/DroneVideos/DJI_0833.MP4'
-    SAVE_PATH = 'E:/Datasets/DroneDatasets/DroneVideos/DJI_0833/'    
+    #SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/DroneVideos/DJI_0833.MP4'
+    #SAVE_PATH = 'E:/Datasets/DroneDatasets/DroneVideos/DJI_0833/'    
     if not os.path.exists(SAVE_PATH):
         os.makedirs(SAVE_PATH)
 
