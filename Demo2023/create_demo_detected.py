@@ -52,6 +52,8 @@ video2_car_list_path = './Demo2023/DJI_0286_enhanced_detected_car_list_dino.pkl'
 with open(video2_car_list_path, 'rb') as file:
     video2_car_list = pickle.load(file)
 
+car_gt_list = []
+person_gt_list = []
 count_index = 0
 
 video_detected_result = f'Person Count: 2000, Car Count: 4000'
@@ -80,8 +82,8 @@ while True:
     # 将视频帧嵌入黑色背景图像
     background_image = Image.new('RGB', (background_width, background_height), background_color)
 
-    background_image.paste(pil_frame1, (x_offset, y_offset))
-    background_image.paste(pil_frame2, (background_width // 2 + x_offset, y_offset))
+    background_image.paste(pil_frame1, (x_offset, y_offset -30))
+    background_image.paste(pil_frame2, (background_width // 2 + x_offset, y_offset -30))
 
     # 在黑色背景上添加视频名称标记
     draw = ImageDraw.Draw(background_image)
@@ -107,34 +109,32 @@ while True:
     video1_car_count = video1_car_list[count_index]
     video1_person_count = video1_person_list[count_index]
 
-    video1_person_count_str = str(video1_person_count)
-    spaces = 5 - len(video1_person_count_str)
-    video1_detected_result_person = "Person Count: " + (" " * spaces) + video1_person_count_str + ", " + f"Car Count: {video1_car_count:<4}"
+    video1_detected_result = f"Person Count: {video1_person_count:<4}" + "\n" + f"Car Count: {video1_car_count:<4}"
     
     #确定绘制位置
-    video1_detected_result_width, video1_detected_result_height = draw.textsize(video_detected_result, font=font)
+    video1_detected_result_width, video1_detected_result_height = draw.textsize(video1_detected_result, font=font)
 
     video1_detected_result_x = x_offset + (resize_width - video1_detected_result_width) // 2
     video1_detected_result_y = (background_height - resize_height) // 2 + resize_height
-    draw.text((video1_detected_result_x, video1_detected_result_y), video1_detected_result_person, font=font, fill=(255, 255, 255))
-
-    video1_detected_result_x = x_offset + (resize_width - video1_detected_result_width) // 2
-    video1_detected_result_y = (background_height - resize_height) // 2 + resize_height
-    draw.text((video1_detected_result_x, video1_detected_result_y), video1_detected_result_person, font=font, fill=(255, 255, 255))
+    draw.text((video1_detected_result_x, video1_detected_result_y), video1_detected_result, font=font, fill=(255, 255, 255))
     
     video2_car_count = video2_car_list[count_index]
     video2_person_count = video2_person_list[count_index]
     #video2_detected_result = f"Person Count: {video2_person_count:<6}, Car Count: {video2_car_count:<6}"
     
-    video2_person_count_str = str(video2_person_count)
-    spaces = 5 - len(video2_person_count_str)
-    video2_detected_result = "Person Count: " + (" " * spaces) + video2_person_count_str + ", " + f"Car Count: {video2_car_count:<4}"
-
+    video2_detected_result = f"Person Count: {video2_person_count:<4}" + "\n" + f"Car Count: {video2_car_count:<4}"
     #确定绘制位置
-    video2_detected_result_width, video2_detected_result_height = draw.textsize(video_detected_result, font=font)
+    video2_detected_result_width, video2_detected_result_height = draw.textsize(video2_detected_result, font=font)
     video2_detected_result_x = background_width // 2 + x_offset + (resize_width - video2_detected_result_width) // 2
     video2_detected_result_y = (background_height - resize_height) // 2 + resize_height
+    
     draw.text((video2_detected_result_x, video2_detected_result_y), video2_detected_result, font=font, fill=(255, 255, 255))
+
+    video1_detected_GT = f"Person Count GT: 100" + "\n" + f"Car Count GT: 100"
+    video1_detected_GT_width, video1_detected_GT_height = draw.textsize(video1_detected_GT, font=font)
+    video1_detected_GT_x = (background_width - video1_detected_GT_width) // 2
+    video1_detected_GT_y = (background_height - resize_height) // 2 + resize_height
+    draw.text((video1_detected_GT_x, video1_detected_GT_y), video1_detected_GT, font=font, fill=(0, 0, 255))
     # 将图像转换回OpenCV格式并写入输出视频
     output_frame = cv2.cvtColor(np.array(background_image), cv2.COLOR_RGB2BGR)
     output_video.write(output_frame)
