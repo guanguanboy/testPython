@@ -3,8 +3,8 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 
 # 加载视频
-video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_seged.mp4')
-video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced_seged_by_segformer.mp4')
+video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_seged_by_segformer_b0.mp4')
+video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced_seged_by_mask2former_part_class.mp4')
 
 # 创建黑色背景图像
 background_color = (0, 0, 0)  # 黑色背景
@@ -17,7 +17,7 @@ font_size = 40
 font = ImageFont.truetype('arial.ttf', font_size)
 
 # 创建视频写入对象
-output_filename = './videos/DJI_0286_seg_segformer_demo.mp4'
+output_filename = './videos/DJI_0286_seg_maskformer_demo.mp4'
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 output_video = cv2.VideoWriter(output_filename, fourcc, 30.0, (background_width, background_height))
 

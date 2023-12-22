@@ -1,10 +1,11 @@
 import cv2
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
+import pickle
 
 # 加载视频
-video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_detected.mp4')
-video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced_detected_yolox.mp4')
+video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/detection/DJI_0286_detected_yolov3.mp4')
+video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/detection/DJI_0286_enhanced_detected_dino.mp4')
 
 # 创建黑色背景图像
 background_color = (0, 0, 0)  # 黑色背景
@@ -17,13 +18,44 @@ font_size = 40
 font = ImageFont.truetype('arial.ttf', font_size)
 
 # 创建视频写入对象
-output_filename = './videos/DJI_0286_detection_yolox_demo.mp4'
+output_filename = './videos/DJI_0286_detection_yolo_dino_demo.mp4'
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 output_video = cv2.VideoWriter(output_filename, fourcc, 30.0, (background_width, background_height))
 
 # 调整视频大小
 resize_width = 800
 resize_height = 600
+
+#读取person count list
+video1_person_list_path = './Demo2023/DJI_0286_detected_person_list_yolov3.pkl'
+
+# 读取.pkl文件并获取保存的列表
+with open(video1_person_list_path, 'rb') as file:
+    video1_person_list = pickle.load(file)
+
+video1_car_list_path = './Demo2023/DJI_0286_detected_car_list_yolov3.pkl'
+
+# 读取.pkl文件并获取保存的列表
+with open(video1_car_list_path, 'rb') as file:
+    video1_car_list = pickle.load(file)
+
+#读取car count list
+video2_person_list_path = './Demo2023/DJI_0286_enhanced_detected_person_list_dino.pkl'
+
+# 读取.pkl文件并获取保存的列表
+with open(video2_person_list_path, 'rb') as file:
+    video2_person_list = pickle.load(file)
+
+video2_car_list_path = './Demo2023/DJI_0286_enhanced_detected_car_list_dino.pkl'
+
+# 读取.pkl文件并获取保存的列表
+with open(video2_car_list_path, 'rb') as file:
+    video2_car_list = pickle.load(file)
+
+count_index = 0
+
+video_detected_result = f'Person Count: 2000, Car Count: 4000'
+person_detected_result = 'Person Count: 2000,'
 
 # 处理视频帧
 while True:
@@ -46,6 +78,8 @@ while True:
     y_offset = (background_height - resize_height) // 2
 
     # 将视频帧嵌入黑色背景图像
+    background_image = Image.new('RGB', (background_width, background_height), background_color)
+
     background_image.paste(pil_frame1, (x_offset, y_offset))
     background_image.paste(pil_frame2, (background_width // 2 + x_offset, y_offset))
 
@@ -70,10 +104,42 @@ while True:
     draw.text((video1_name_x, video1_name_y), video1_name, font=font, fill=(255, 255, 255))
     draw.text((video2_name_x, video2_name_y), video2_name, font=font, fill=(255, 255, 255))
 
+    video1_car_count = video1_car_list[count_index]
+    video1_person_count = video1_person_list[count_index]
 
+    video1_person_count_str = str(video1_person_count)
+    spaces = 5 - len(video1_person_count_str)
+    video1_detected_result_person = "Person Count: " + (" " * spaces) + video1_person_count_str + ", " + f"Car Count: {video1_car_count:<4}"
+    
+    #确定绘制位置
+    video1_detected_result_width, video1_detected_result_height = draw.textsize(video_detected_result, font=font)
+
+    video1_detected_result_x = x_offset + (resize_width - video1_detected_result_width) // 2
+    video1_detected_result_y = (background_height - resize_height) // 2 + resize_height
+    draw.text((video1_detected_result_x, video1_detected_result_y), video1_detected_result_person, font=font, fill=(255, 255, 255))
+
+    video1_detected_result_x = x_offset + (resize_width - video1_detected_result_width) // 2
+    video1_detected_result_y = (background_height - resize_height) // 2 + resize_height
+    draw.text((video1_detected_result_x, video1_detected_result_y), video1_detected_result_person, font=font, fill=(255, 255, 255))
+    
+    video2_car_count = video2_car_list[count_index]
+    video2_person_count = video2_person_list[count_index]
+    #video2_detected_result = f"Person Count: {video2_person_count:<6}, Car Count: {video2_car_count:<6}"
+    
+    video2_person_count_str = str(video2_person_count)
+    spaces = 5 - len(video2_person_count_str)
+    video2_detected_result = "Person Count: " + (" " * spaces) + video2_person_count_str + ", " + f"Car Count: {video2_car_count:<4}"
+
+    #确定绘制位置
+    video2_detected_result_width, video2_detected_result_height = draw.textsize(video_detected_result, font=font)
+    video2_detected_result_x = background_width // 2 + x_offset + (resize_width - video2_detected_result_width) // 2
+    video2_detected_result_y = (background_height - resize_height) // 2 + resize_height
+    draw.text((video2_detected_result_x, video2_detected_result_y), video2_detected_result, font=font, fill=(255, 255, 255))
     # 将图像转换回OpenCV格式并写入输出视频
     output_frame = cv2.cvtColor(np.array(background_image), cv2.COLOR_RGB2BGR)
     output_video.write(output_frame)
+
+    count_index = count_index + 1
 
 
     # 显示图像

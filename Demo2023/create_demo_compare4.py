@@ -9,9 +9,10 @@ import numpy as np
 #video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
 
 video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_resized_fps30.mp4')
-video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_DCE++_enhanced_fps30.mp4')
+video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_RetinexNet_enhanced_fps30.mp4')
 video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_SCI_enhanced_fps30.mp4')
-video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
+#video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DCE++_enhanced_denoised_fps30.mp4')
+video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_DCE++_enhanced_fps30.mp4')
 # 创建黑色背景图像
 background_color = (0, 0, 0)  # 黑色背景
 background_width = 1920
@@ -23,7 +24,7 @@ font_size = 40
 font = ImageFont.truetype('arial.ttf', font_size)
 
 # 创建视频写入对象
-output_filename = './videos/output_video_4.mp4'
+output_filename = './videos/enhancement_video_4.mp4'
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 output_video = cv2.VideoWriter(output_filename, fourcc, 30.0, (background_width, background_height))
 
@@ -54,10 +55,10 @@ while True:
 
     # 计算视频居中位置
     x_offset = (background_width//2 - resize_width)//2
-    y_offset = (background_height//2 - resize_height) // 2
+    y_offset = 30
 
     #x_offset = (background_width//2 - resize_width) // 2
-    y_offset_below = (background_height//2 - resize_height) // 2 + background_height//2
+    y_offset_below = background_height//2
 
     # 将视频帧嵌入黑色背景图像
     background_image.paste(pil_frame1, (x_offset, y_offset))
@@ -69,22 +70,25 @@ while True:
     # 在黑色背景上添加视频名称标记
     draw = ImageDraw.Draw(background_image)
     video1_name = 'Input'
-    video2_name = 'ZeroDCE'
-    video3_name = 'SCI'
+    video2_name = 'URetinex (CVPR 2022)'
+    video3_name = 'SCI (CVPR 2021)'
     video4_name = 'Ours'
     #draw.text((10, 10), video1_name, font=font, fill=(255, 255, 255))
     #draw.text((background_width // 2 + 10, 10), video2_name, font=font, fill=(255, 255, 255))
     # 计算视频名称起始位置
     video1_name_width, video1_name_height = draw.textsize(video1_name, font=font)
     video2_name_width, video2_name_height = draw.textsize(video2_name, font=font)
-    video1_name_x = (x_offset - video1_name_width) // 2
+    #video1_name_x = (x_offset - video1_name_width) // 2
+    video1_name_x = (background_width//2 - video1_name_width)//2
+
     #video1_name_y = y_offset + resize_height + (background_height - resize_height - video1_name_height) // 2
-    video1_name_y = (background_height//2 - video1_name_height) // 2
+    video1_name_y = y_offset + resize_height + 10
+
 
     #video2_name_x = background_width // 2 + (x_offset - video1_name_width) // 2
-    video2_name_x = background_width // 2
+    video2_name_x = (background_width//2 - video2_name_width)//2 + background_width//2
     #video2_name_y = y_offset + resize_height + (background_height - resize_height - video2_name_height) // 2
-    video2_name_y = (background_height//2 - video2_name_height) // 2
+    video2_name_y = y_offset + resize_height + 10
 
     draw.text((video1_name_x, video1_name_y), video1_name, font=font, fill=(255, 255, 255))
     draw.text((video2_name_x, video2_name_y), video2_name, font=font, fill=(255, 255, 255))
@@ -92,13 +96,13 @@ while True:
     video3_name_width, video3_name_height = draw.textsize(video3_name, font=font)
     video4_name_width, video4_name_height = draw.textsize(video4_name, font=font)
     
-    video3_name_x = (x_offset - video3_name_width) // 2
+    video3_name_x = (background_width//2 - video3_name_width)//2
     #video1_name_y = y_offset + resize_height + (background_height - resize_height - video1_name_height) // 2
-    video3_name_y = (background_height//2 - video3_name_height) // 2 + background_height//2
+    video3_name_y = y_offset_below + 10 + resize_height
     
-    video4_name_x = background_width // 2 + (x_offset - video4_name_width) // 2
+    video4_name_x = (background_width//2 - video4_name_width)//2 + background_width//2
     #video2_name_y = y_offset + resize_height + (background_height - resize_height - video2_name_height) // 2
-    video4_name_y = (background_height//2 - video4_name_height) // 2 +  background_height//2
+    video4_name_y = y_offset_below + 10 + resize_height
 
     draw.text((video3_name_x, video3_name_y), video3_name, font=font, fill=(255, 255, 255))
     draw.text((video4_name_x, video4_name_y), video4_name, font=font, fill=(255, 255, 255))
