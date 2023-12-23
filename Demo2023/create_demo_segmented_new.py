@@ -34,6 +34,18 @@ output_video = cv2.VideoWriter(output_filename, fourcc, 30.0, (background_width,
 resize_width = 600
 resize_height = 400
 
+line1_point1 = (342,380)
+line1_point2 = (180,540)
+
+line2_point1 = (540,380)
+line2_point2 = (780,540)
+
+line3_point1 = (1300,380)
+line3_point2 = (1140,540)
+
+line4_point1 = (1500,380)
+line4_point2 = (1740,540)
+
 # 处理视频帧
 while True:
     ret1, frame1 = video1.read()
@@ -86,6 +98,11 @@ while True:
 
     draw.text((video1_name_x, video1_name_y), video1_name, font=font, fill=(255, 255, 255))
     draw.text((video2_name_x, video2_name_y), video2_name, font=font, fill=(255, 255, 255))
+
+    draw.line([line1_point1, line1_point2], fill="green", width=5)
+    draw.line([line2_point1, line2_point2], fill="green", width=5)
+    draw.line([line3_point1, line3_point2], fill="green", width=5)
+    draw.line([line4_point1, line4_point2], fill="green", width=5)
 
     # 将图像转换回OpenCV格式并写入输出视频
     output_frame = cv2.cvtColor(np.array(background_image), cv2.COLOR_RGB2BGR)
