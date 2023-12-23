@@ -4,16 +4,16 @@ import cv2
 import re
 
 # 图片文件夹路径
-folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768/"  # 替换为你的图片文件夹路径
+#folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768/"  # 替换为你的图片文件夹路径
 #folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/RentinexNet/DJI_0014/"  # 替换为你的图片文件夹路径
 #folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_DEC++_enhanced_1024_768/"  # 替换为你的图片文件夹路径
-#folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014_resized/"  # 替换为你的图片文件夹路径
+folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014_resized/"  # 替换为你的图片文件夹路径
 
 
-output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768_circled/"  # 替换为你的图片文件夹路径
+#output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768_circled/"  # 替换为你的图片文件夹路径
 #output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/RentinexNet_circled/"  # 替换为你的图片文件夹路径
 #output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_DEC++_enhanced_1024_768_circled/"  # 替换为你的图片文件夹路径
-#output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_resized_circled/"  # 替换为你的图片文件夹路径
+output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_resized_circled/"  # 替换为你的图片文件夹路径
 
 if not os.path.exists(output_folder_path):
     os.mkdir(output_folder_path)

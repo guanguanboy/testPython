@@ -106,8 +106,9 @@ while True:
     draw.text((video1_name_x, video1_name_y), video1_name, font=font, fill=(255, 255, 255))
     draw.text((video2_name_x, video2_name_y), video2_name, font=font, fill=(255, 255, 255))
 
-    video1_car_count = video1_car_list[count_index]
-    video1_person_count = video1_person_list[count_index]
+    if count_index % 30 == 0:
+        video1_car_count = video1_car_list[count_index]
+        video1_person_count = video1_person_list[count_index]
 
     video1_detected_result = f"Person Count: {video1_person_count:<4}" + "\n" + f"Car Count: {video1_car_count:<4}"
     
@@ -120,8 +121,9 @@ while True:
     video1_detected_result_y = (background_height - resize_height) // 2 + resize_height
     draw.text((video1_detected_result_x, video1_detected_result_y), video1_detected_result, font=font, fill=(255, 255, 255))
     
-    video2_car_count = video2_car_list[count_index]
-    video2_person_count = video2_person_list[count_index]
+    if count_index % 30 == 0:
+        video2_car_count = video2_car_list[count_index]
+        video2_person_count = video2_person_list[count_index]
     #video2_detected_result = f"Person Count: {video2_person_count:<6}, Car Count: {video2_car_count:<6}"
     
     video2_detected_result = f"Person Count: {video2_person_count:<4}" + "\n" + f"Car Count: {video2_car_count:<4}"

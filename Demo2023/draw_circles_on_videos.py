@@ -1,7 +1,7 @@
 import cv2
 
 # 打开视频文件
-video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_resized_fps30.mp4')
+video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_resized_fps30.mp4')
 video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_RetinexNet_enhanced_fps30.mp4')
 video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_SCI_enhanced_fps30.mp4')
 #video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DCE++_enhanced_denoised_fps30.mp4')
@@ -20,7 +20,7 @@ fourcc = cv2.VideoWriter_fourcc(*"mp4v")
 out = cv2.VideoWriter(output_path, fourcc, 30.0, (frame_width, frame_height))
 
 # 定义圆圈的参数
-circle_center = (300, 300)  # 圆心坐标
+circle_center = (830, 260)  # 圆心坐标
 circle_radius = 100  # 圆的半径
 circle_color = (0, 0, 255)  # 红色，BGR 格式
 circle_thickness = 2  # 圆圈的线条粗细

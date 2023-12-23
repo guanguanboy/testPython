@@ -77,7 +77,7 @@ while True:
     draw = ImageDraw.Draw(background_image)
     video1_name = 'Input'
     video2_name = 'SCI (CVPR 2022)'
-    video3_name = 'RetinexFormer (CVPR 2023)'
+    video3_name = 'RetinexFormer (ICCV 2023)'
     video4_name = 'Ours (CVPR 2024 in Review)'
     #draw.text((10, 10), video1_name, font=font, fill=(255, 255, 255))
     #draw.text((background_width // 2 + 10, 10), video2_name, font=font, fill=(255, 255, 255))

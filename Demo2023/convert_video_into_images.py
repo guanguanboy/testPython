@@ -34,8 +34,8 @@ if __name__ == '__main__':
     #SAMPLE_VIDEO = 'E:/DroneDatasets/DroneVideos/DJI_0838.MP4'
     #SAVE_PATH = 'E:/DroneDatasets/DroneVideos/DJI_0838/'
 
-    SAMPLE_VIDEO = 'D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_SCI_enhanced_fps30.mp4'
-    SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768/'
+    SAMPLE_VIDEO = 'D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_DCE++_enhanced_fps30.mp4'
+    SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_DEC++_enhanced_1024_768/'
     #SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0023.MP4'
     #SAVE_PATH = 'E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0023/'
     #SAMPLE_VIDEO = 'E:/Datasets/DroneDatasets/DroneVideos/DJI_0833.MP4'
