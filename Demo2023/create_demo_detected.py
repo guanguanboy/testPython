@@ -52,8 +52,8 @@ video2_car_list_path = './Demo2023/DJI_0286_enhanced_detected_car_list_dino.pkl'
 with open(video2_car_list_path, 'rb') as file:
     video2_car_list = pickle.load(file)
 
-car_gt_list = []
-person_gt_list = []
+car_gt_list = [49,48,48,45,46,43,42,46,42,43,45,46,47,59,70,72,71,72,72,72,72,71,70,68,64,63,62,61,60,60,56,52,52,50]
+person_gt_list = [28,28,28,26,24,22,20,20,24,24,22,22,22,20,20,24,25,23,23,20,20,20,20,18,18,18,18,18,16,16,16,16,15,15]
 count_index = 0
 
 video_detected_result = f'Person Count: 2000, Car Count: 4000'
@@ -112,7 +112,9 @@ while True:
     video1_detected_result = f"Person Count: {video1_person_count:<4}" + "\n" + f"Car Count: {video1_car_count:<4}"
     
     #确定绘制位置
-    video1_detected_result_width, video1_detected_result_height = draw.textsize(video1_detected_result, font=font)
+    video1_detected_result_for_len = f"Person Count: 100" + "\n" + f"Car Count: 100"
+
+    video1_detected_result_width, video1_detected_result_height = draw.textsize(video1_detected_result_for_len, font=font)
 
     video1_detected_result_x = x_offset + (resize_width - video1_detected_result_width) // 2
     video1_detected_result_y = (background_height - resize_height) // 2 + resize_height
@@ -124,14 +126,18 @@ while True:
     
     video2_detected_result = f"Person Count: {video2_person_count:<4}" + "\n" + f"Car Count: {video2_car_count:<4}"
     #确定绘制位置
-    video2_detected_result_width, video2_detected_result_height = draw.textsize(video2_detected_result, font=font)
+    video2_detected_result_for_len = f"Person Count: 100" + "\n" + f"Car Count: 100"
+    video2_detected_result_width, video2_detected_result_height = draw.textsize(video2_detected_result_for_len, font=font)
     video2_detected_result_x = background_width // 2 + x_offset + (resize_width - video2_detected_result_width) // 2
     video2_detected_result_y = (background_height - resize_height) // 2 + resize_height
     
     draw.text((video2_detected_result_x, video2_detected_result_y), video2_detected_result, font=font, fill=(255, 255, 255))
 
-    video1_detected_GT = f"Person Count GT: 100" + "\n" + f"Car Count GT: 100"
-    video1_detected_GT_width, video1_detected_GT_height = draw.textsize(video1_detected_GT, font=font)
+    person_count_gt = person_gt_list[count_index//30]
+    cat_count_gt = car_gt_list[count_index//30]
+    video1_detected_GT = f"Person Count GT: {person_count_gt}" + "\n" + f"Car Count GT: {cat_count_gt}"
+    video1_detected_GT_for_len = f"Person Count GT: 100" + "\n" + f"Car Count GT: 100"
+    video1_detected_GT_width, video1_detected_GT_height = draw.textsize(video1_detected_GT_for_len, font=font)
     video1_detected_GT_x = (background_width - video1_detected_GT_width) // 2
     video1_detected_GT_y = (background_height - resize_height) // 2 + resize_height
     draw.text((video1_detected_GT_x, video1_detected_GT_y), video1_detected_GT, font=font, fill=(0, 0, 255))
