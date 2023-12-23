@@ -8,11 +8,17 @@ import numpy as np
 #video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286.MP4')
 #video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0286_enhanced.mp4')
 
-video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_resized_fps30.mp4')
-video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_RetinexNet_enhanced_fps30.mp4')
-video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_SCI_enhanced_fps30.mp4')
+#video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_resized_fps30.mp4')
+#video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_RetinexNet_enhanced_fps30.mp4')
+#video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_SCI_enhanced_fps30.mp4')
+#video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_DCE++_enhanced_fps30.mp4')
+
+video1 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_fps30_circled.mp4')
+video2 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_SCI_enhanced_fps30_circled.mp4')
+video3 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_Retinex_enhanced_fps30_circled.mp4')
 #video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DCE++_enhanced_denoised_fps30.mp4')
-video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DJI_0014_DCE++_enhanced_fps30.mp4')
+video4 = cv2.VideoCapture('D:/Codes/PycharmProjects/TestPython/videos/DJI_0014_DCE++_enhanced_fps30_circled.mp4')
+
 # 创建黑色背景图像
 background_color = (0, 0, 0)  # 黑色背景
 background_width = 1920
@@ -24,7 +30,7 @@ font_size = 40
 font = ImageFont.truetype('arial.ttf', font_size)
 
 # 创建视频写入对象
-output_filename = './videos/enhancement_video_4.mp4'
+output_filename = './videos/enhancement_video_4_circled.mp4'
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 output_video = cv2.VideoWriter(output_filename, fourcc, 30.0, (background_width, background_height))
 
@@ -70,9 +76,9 @@ while True:
     # 在黑色背景上添加视频名称标记
     draw = ImageDraw.Draw(background_image)
     video1_name = 'Input'
-    video2_name = 'URetinex (CVPR 2022)'
-    video3_name = 'SCI (CVPR 2021)'
-    video4_name = 'Ours'
+    video2_name = 'SCI (CVPR 2022)'
+    video3_name = 'RetinexFormer (CVPR 2023)'
+    video4_name = 'Ours (CVPR 2024 in Review)'
     #draw.text((10, 10), video1_name, font=font, fill=(255, 255, 255))
     #draw.text((background_width // 2 + 10, 10), video2_name, font=font, fill=(255, 255, 255))
     # 计算视频名称起始位置
