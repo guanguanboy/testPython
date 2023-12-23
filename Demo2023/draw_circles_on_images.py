@@ -4,9 +4,17 @@ import cv2
 import re
 
 # 图片文件夹路径
-folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768/"  # 替换为你的图片文件夹路径
+#folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768/"  # 替换为你的图片文件夹路径
+folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/RentinexNet/DJI_0014/"  # 替换为你的图片文件夹路径
+#folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_DEC++_enhanced_1024_768/"  # 替换为你的图片文件夹路径
+#folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/DJI_0014_resized/"  # 替换为你的图片文件夹路径
 
-output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768_circled/"  # 替换为你的图片文件夹路径
+
+#output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_SCI_enhanced_1024_768_circled/"  # 替换为你的图片文件夹路径
+output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/RentinexNet_circled/"  # 替换为你的图片文件夹路径
+#output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_DEC++_enhanced_1024_768_circled/"  # 替换为你的图片文件夹路径
+#output_folder_path = "E:/Datasets/DroneDatasets/SeeBelow/Captured0316/100MEDIA/Results/DJI_0014_resized_circled/"  # 替换为你的图片文件夹路径
+
 if not os.path.exists(output_folder_path):
     os.mkdir(output_folder_path)
 # 定义圆圈的参数
@@ -19,8 +27,10 @@ circle2_center = (870, 510)  # 圆心坐标
 circle2_radius = 120  # 圆的半径
 
 circle3_center = (500, 450)  # 圆心坐标
-circle3_radius = 200  # 圆的半径
+circle3_radius = 180  # 圆的半径
 
+circle4_center = (730, 400)  # 圆心坐标
+circle4_radius = 180  # 圆的半径
 def extract_number(filename):
     # 使用正则表达式提取文件名中的数字部分
     match = re.search(r'\d+', filename)
@@ -52,6 +62,9 @@ for filename in image_files:
             # 在图片上绘制红色圆圈
             cv2.circle(image, circle3_center, circle3_radius, circle_color, circle_thickness)
 
+        if index in range(1400, 2030):
+            # 在图片上绘制红色圆圈
+            cv2.circle(image, circle4_center, circle4_radius, circle_color, circle_thickness)
         # 显示图片
         #cv2.imshow("Image", image)
         #cv2.waitKey(0)
